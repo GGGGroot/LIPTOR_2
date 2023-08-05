@@ -1,0 +1,14 @@
+<link name="velodyne">
+  <visual>
+    <geometry>
+      <cylinder radius="0.103" length="0.072" />
+    </geometry>
+    <origin xyz="0 0 0" />
+    <material name="black" />
+  </visual>
+</link>
+<joint name="velodyne_joint" type="fixed">
+  <parent link="base_link" />
+  <child link="velodyne" />
+  <origin xyz="0.120 0 0.184" />
+</joint>

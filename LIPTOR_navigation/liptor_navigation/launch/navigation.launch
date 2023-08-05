@@ -1,0 +1,18 @@
+<launch>
+    
+    <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" />
+    
+    <!--- launching amcl-->
+    <include file="$(find liptor_navigation)/launch/amcl_demo.launch">
+      <arg name="map_file" value="$(find liptor_navigation)/maps/mymap.yaml"/>
+    </include>
+
+    <!--- launching Rviz-->
+    <include file="$(find jackal_viz)/launch/view_robot.launch">
+        <arg name="config" value="localization" />
+    </include>
+
+    <!--- marking coordinates
+    <node pkg="liptor_navigation" type="move_base_square" name="move_base_square"/>
+    -->
+</launch>

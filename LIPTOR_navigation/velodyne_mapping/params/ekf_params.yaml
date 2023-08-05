@@ -1,0 +1,36 @@
+frequency: 30 # Specify your desired update rate
+
+sensor_timeout: 0.1 # Set the timeout for missing sensor data
+
+two_d_mode: true # Set to true if your robot moves only in 2D (xy-plane)
+
+# IMU configuration
+imu0: /imu/data
+imu0_config: [false, false, false,
+              false, false, false,
+              true, true, true,
+              false, false, false]
+imu0_differential: false
+imu0_remove_gravitational_acceleration: true
+
+# VLP-16 LiDAR configuration
+sensor0: /velodyne_points
+sensor0_config: [true, true, false,
+                 false, false, true,
+                 false, false, false,
+                 false, false, true]
+sensor0_differential: false
+
+# Publish robot's state estimate
+publish_tf: true
+publish_acceleration: false
+publish_odom_to_base_transform: true
+
+# Sensor noise parameters (adjust according to your sensors)
+imu0_nodelay: true
+imu0_linear_acceleration_variance: 0.1
+imu0_angular_velocity_variance: 0.1
+sensor0_pose_variance: 0.1
+sensor0_twist_variance: 0.1
+
+

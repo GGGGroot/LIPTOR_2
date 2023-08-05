@@ -1,0 +1,15 @@
+<launch>
+
+    <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" />
+    
+    <node pkg="velodyne_laserscan" type="velodyne_laserscan_node" name="velodyne_laserscan_node" />
+    
+    <!-- Launch rviz -->
+    <include file="$(find liptor_navigation)/launch/include/view_robot.launch" />
+    
+
+    <!-- Launch gmapping and move_base for SLAM and navigation -->
+    <include file="$(find liptor_navigation)/launch/include/gmapping.launch" />
+    <include file="$(find liptor_navigation)/launch/include/move_base.launch" />
+
+</launch>

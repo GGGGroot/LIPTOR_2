@@ -1,0 +1,22 @@
+<launch>
+
+    <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" />
+      
+    <!-- Launch rviz -->
+    <include file="$(find liptor_navigation)/launch/include/view_robot.launch" />
+    
+    <node pkg="velodyne_mapping" type="transform" name="transform" />
+     
+    <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser" args="0.12 0.0 0.184 0 0 0 /base_link /velodyne 50" /> 
+    
+    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization_node">
+      <!-- Add IMU and LiDAR sensor configurations here -->
+      <rosparam command="load" file="$(find velodyne_mapping)/params/ekf_params.yaml"/>
+    </node>
+
+    <!-- Launch gmapping and move_base for SLAM and navigation -->
+    <include file="$(find octomap_server)/launch/octomap_mapping.launch" />
+    <include file="$(find liptor_navigation)/launch/include/move_base.launch" />
+
+</launch>
+
